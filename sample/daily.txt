@@ -1,0 +1,19 @@
+============
+Daily Report
+============
+
+!{Today=%s/%s/%s}
+
+Start Time 00:00
+  End Time 00:00
+Working    00:00 (Rest Time 00:00)
+
+Comments
+========
+
+Works
+=====
+
+Tickets
+=======
+!{Tickets}

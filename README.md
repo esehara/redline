@@ -2,9 +2,9 @@
            ____    U _____ u ____     _                  _   _   U _____ u 
         U |  _"\ u \| ___"|/|  _"\   |"|        ___     | \ |"|  \| ___"|/ 
          \| |_) |/  |  _|" /| | | |U | | u     |_"_|   <|  \| |>  |  _|"   
-          |  _ <    | |___ U| |_| |\\\\| |/__     | |    U| |\  |u  | |___   
+          |  _ <    | |___ U| |_| |\\| |/__     | |    U| |\  |u  | |___   
           |_| \_\   |_____| |____/ u |_____|  U/| |\u   |_| \_|   |_____|  
-          //   \\\\_  <<   >>  |||_    //  \\\\.-,_|___|_,-.||   \\\\,-.<<   >>  
+          //   \\_  <<   >>  |||_    //  \\.-,_|___|_,-.||   \\,-.<<   >>  
          (__)  (__)(__) (__)(__)_)  (_")("_)\_)-' '-(_/ (_")  (_/(__) (__)
 
 Redline
@@ -45,3 +45,34 @@ Command
       -l LOG, --log LOG
       -x LIMIT, --max LIMIT
 
+
+Detail
+======
+
+Daily Report Mode (report)
+--------------------------
+
+Daily Report Mode, Ituse Template file and output. Example 
+
+        ============
+        Daily Report
+        ============
+         
+        !{Today=%s/%s/%s}
+         
+        Start Time 00:00
+        End Time 00:00
+        Working    00:00 (Rest Time 00:00)
+         
+        Comments
+        ========
+        
+        Works
+        =====
+        
+        Tickets
+        =======
+        !{Tickets}
+
+!{Tickets} is, when use "show" option, replaced ticket list.
+~                           
