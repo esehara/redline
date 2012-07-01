@@ -52,6 +52,11 @@ def begin():
     param_init = subparsers.add_parser(
             'init',
             help='When You use Redline first,do use option :) ')
+    param_init.add_argument(
+            '-f','--filepath'
+            ,action='store'
+            ,dest='filepath'
+            ,type=str)
     param_init.set_defaults(func=tools.initialize)
     # -- report --
     param_report = subparsers.add_parser('report'
@@ -96,6 +101,9 @@ def begin():
             ,action='store'
             ,dest='filepath'
             ,type=str)
+    param_new.add_argument('-m','--make'
+            ,action='store_true'
+            ,dest='make_template')
     param_new.add_argument('-t','--template'
             ,action='store_true'
             ,dest='template_make')
@@ -166,7 +174,6 @@ def begin():
              ,'project_id':cmd.project_id
              ,'limit':str(cmd.limit)
           }
-
     cmd.func(cmd,opt)
 
 def show_tickets(cmd,opt):

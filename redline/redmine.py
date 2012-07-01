@@ -6,8 +6,10 @@ import xml.etree.cElementTree as etree
 
 if __name__ == "__main__" or __name__ == "redmine":
     import tools
+    import parser
 else:
     import redline.tools as tools
+    import redline.parser as parser
 
 def isTicket(ticket):
     if re.search("^#([0-9]*)",ticket) is not None:
@@ -34,7 +36,7 @@ def create_xml(subject,project_id,priority=None,description=None,tracker_id=None
     if priority is None:
         priority_xml = ""
     else:
-        priority_xml = "<priority_id>%s</priority_id>" 
+        priority_xml = "<priority_id>%s</priority_id>" %(priority) 
     
     description_xml = "<description>%s</description>" %(description)
     
@@ -53,11 +55,23 @@ def create_xml(subject,project_id,priority=None,description=None,tracker_id=None
 def create(cmd,opt):
     import urllib
     conf = tools.load_configure(cmd.configure_filename) 
+    if cmd.make_template:
+        parser.TicketTemplateOutput() 
+        exit()
+    if cmd.filepath is not None:
+        file_result = parser.TicketFile(open(cmd.filepath))
+        cmd.subject_text = file_result["subject"]
+        cmd.project_id    = file_result["project_id"]
+        cmd.tracker_id    = file_result["tracker_id"]
+        cmd.priority_id   = file_result["priority_id"]
+        cmd.description   = file_result["description"]
     if (cmd.subject_text is None
        or cmd.project_id is None):
         print("Oops !! Subject and Project_id is not found :(")
         exit()
     xml = create_xml(cmd.subject_text,cmd.project_id,cmd.priority_id,cmd.description,cmd.tracker_id)
+    print("Post xml now :)")
+    print(xml)
     tools.post(conf["URL"] + "issues.xml?key=" + conf["API_KEY"],xml)
     print("create Issue :)")
 
@@ -66,6 +80,7 @@ def your_detail(cmd,opt):
     xml_data_path = conf["URL"] + "users/current.xml?key=" + conf["API_KEY"]
     xml = etree.parse(urllib.urlopen(xml_data_path))
     print("\n\nHi!! Mr.%s :)" %(xml.find(".//firstname").text))
+    print("Redmine URL is " + conf["URL"])
     print("Your Redmine Id is " + xml.find(".//id").text)
     print("\n\n")
 
@@ -150,7 +165,7 @@ def build_param(opt):
         return param
     for key,value in opt.items():
         if value is not None:
-            param += key + "=" + value
+            param += key + "=" + value + "&"
     return param
 
 def build_xmlpath(configure,url_opt):

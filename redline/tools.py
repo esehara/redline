@@ -32,7 +32,7 @@ def load_configure(filepath=None):
     configure_file = open(filepath)
     return yaml.load(configure_file.read())
 
-def initialize():
+def initialize(cmd,opt):
     """
     Make Configure File (YAML type) in Home Directory.
     """
@@ -41,13 +41,17 @@ def initialize():
         print("Oh... Environment Valiable 'HOME' isn't found :( You set Home directory :D !")
         exit()
     home_dir = os.environ.get("HOME")
-    if os.path.isfile(os.environ.get("HOME") + "/.redline"):
+    if (os.path.isfile(os.environ.get("HOME") + "/.redline")
+        and cmd.filepath is None):
         print("""Oops!! Configure is already exist :(
-If you make new configure file,use option "-f" or "file"
-        """)
+If you make new configure file,use option "-f" or "file" """)
         exit()
     print("OK,I make configure file :D !!")
-    init_file = open(home_dir + "/.redline","w")
+    
+    if cmd.filepath is not None:
+        init_file = open(cmd.filepath,"w")
+    else:
+        init_file = open(home_dir + "/.redline","w")
     init_file.write("""
 URL: http://hogehoge.com/
 API_KEY: Write your redmine API_KEY :) If not use, delete it.

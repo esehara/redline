@@ -17,6 +17,13 @@ Install
      git clone THIS_REPOSITORY
      sudo python setup.py install
 
+Get Start
+=========
+
+1. command -> redline init
+2. edit "YOUR HOME/.redline"
+3. enjoy it :)
+
 Command
 =======
 
@@ -54,25 +61,24 @@ Daily Report Mode (report)
 
 Daily Report Mode, Ituse Template file and output. Example 
 
-        ============
-        Daily Report
-        ============
-         
-        !{Today=%s/%s/%s}
-         
-        Start Time 00:00
-        End Time 00:00
-        Working    00:00 (Rest Time 00:00)
-         
-        Comments
-        ========
-        
-        Works
-        =====
-        
-        Tickets
-        =======
-        !{Tickets}
+     ============
+     Daily Report
+     ============
 
-!{Tickets} is, when use "show" option, replaced ticket list.
-~                           
+     !{Today=%s/%s/%s}
+          
+     Start Time 00:00
+     End Time 00:00
+     Working    00:00 (Rest Time 00:00)
+         
+     Comments
+     ========
+     
+     Works
+     =====
+     
+     Tickets
+     =======
+     !{Tickets}
+
+!{Tickets} is, when use "show" option, replaced ticket list.                    
