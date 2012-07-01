@@ -52,6 +52,7 @@ Command
       -l LOG, --log LOG
       -x LIMIT, --max LIMIT
 
+or If you want to read sub-commands help, use -h option redline. ex. redline init -h.
 
 Detail
 ======
