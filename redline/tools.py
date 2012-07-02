@@ -30,7 +30,13 @@ def load_configure(filepath=None):
             exit()
         filepath = os.environ.get("HOME") + "/.redline"
     configure_file = open(filepath)
-    return yaml.load(configure_file.read())
+    return url_prefix(yaml.load(configure_file.read()))
+
+def url_prefix(conf):
+    import re
+    if re.search("/$",conf['URL']) is None:
+        conf['URL'] += '/'
+    return conf
 
 def initialize(cmd,opt):
     """
